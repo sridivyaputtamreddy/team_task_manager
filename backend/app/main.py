@@ -9,7 +9,7 @@ app = FastAPI()
 
 
 origins = [
-    "https://team-task-manager-3v3w-7i3swpbbp-sridivyaputtamreddys-projects.vercel.app",
+    "https://team-task-manager-3v3w-rlokh3peh-sridivyaputtamreddys-projects.vercel.app",
 ]
 
 app.add_middleware(
