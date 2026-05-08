@@ -7,7 +7,7 @@ import hashlib
 # ========================
 # JWT CONFIG
 # ========================
-SECRET_KEY = os.getenv("SECRET_KEY", "secret")
+SECRET_KEY = os.getenv("JWT_SECRET")
 ALGORITHM = "HS256"
 
 # ========================
