@@ -7,12 +7,9 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
-
-
-origins= [
+origins = [
     "http://localhost:5173",
     "https://team-task-manager-3v3w.vercel.app"
-
 ]
 
 app.add_middleware(
@@ -20,14 +17,14 @@ app.add_middleware(
     allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
-    allow_headers=["*"],
+    allow_headers=["*"],  # important
+    expose_headers=["*"], # 🔥 ADD THIS (fixes Railway OPTIONS issues)
 )
 
 app.include_router(auth_routes.router)
 app.include_router(project_routes.router)
 app.include_router(task_routes.router)
 app.include_router(dashboard_routes.router)
-
 
 @app.get("/")
 def home():
