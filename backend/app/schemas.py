@@ -1,14 +1,13 @@
 
 from datetime import datetime
-from typing import Optional
-
+from typing import Optional, Literal
 from pydantic import BaseModel, Field
+
 
 class SignupSchema(BaseModel):
     name: str
     email: str
     password: str = Field(..., min_length=6, max_length=72)
-
 
 
 class LoginSchema(BaseModel):
@@ -22,9 +21,9 @@ class ProjectSchema(BaseModel):
 
 class TaskSchema(BaseModel):
     title: str
-    description: Optional[str] = ""
+    description: Optional[str] = None
     due_date: Optional[datetime] = None
-    priority: str
+    priority: Literal["low", "medium", "high"]
     assigned_to: Optional[int] = None
     project_id: int
 
