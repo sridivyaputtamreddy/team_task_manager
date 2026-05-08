@@ -1,12 +1,14 @@
-from pydantic import BaseModel
+
 from datetime import datetime
 from typing import Optional
 
+from pydantic import BaseModel, Field
 
 class SignupSchema(BaseModel):
     name: str
     email: str
-    password: str
+    password: str = Field(..., min_length=6, max_length=72)
+
 
 
 class LoginSchema(BaseModel):

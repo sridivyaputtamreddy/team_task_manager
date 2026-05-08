@@ -8,8 +8,11 @@ Base.metadata.create_all(bind=engine)
 app = FastAPI()
 
 
-origins = [
-    "https://team-task-manager-3v3w-rlokh3peh-sridivyaputtamreddys-projects.vercel.app",
+
+"origins"= [
+    "http://localhost:5173",
+    "https://vercel.app"
+
 ]
 
 app.add_middleware(
