@@ -9,7 +9,7 @@ app = FastAPI()
 
 
 
-"origins"= [
+origins= [
     "http://localhost:5173",
     "https://vercel.app"
 
