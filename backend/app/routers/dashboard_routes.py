@@ -39,12 +39,12 @@ def dashboard(
     tasks = query.all()
 
     total = len(tasks)
-    todo = len([t for t in tasks if t.status == "TODO"])
-    progress = len([t for t in tasks if t.status == "IN_PROGRESS"])
-    done = len([t for t in tasks if t.status == "DONE"])
+    todo = len([t for t in tasks if t.status == "pending"])
+    progress = len([t for t in tasks if t.status == "in_progress"])
+    done = len([t for t in tasks if t.status == "completed"])
     overdue = len([
         t for t in tasks
-        if t.due_date and t.due_date < datetime.utcnow() and t.status != "DONE"
+        if t.due_date and t.due_date < datetime.utcnow() and t.status != "completed"
     ])
 
     tasks_per_user = {}
