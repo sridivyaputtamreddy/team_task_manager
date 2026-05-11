@@ -11,8 +11,8 @@ export default function Tasks() {
     title: "",
     description: "",
     due_date: "",
-    priority: "MEDIUM",
-    assigned_to: "",
+    priority: "medium",
+    assigned_to: null,
   });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -82,9 +82,9 @@ export default function Tasks() {
         description: form.description,
         due_date: form.due_date || null,
         priority: form.priority,
-        assigned_to: form.assigned_to || null,
+        assigned_to: form.assigned_to ? parseInt(form.assigned_to) : null,
       });
-      setForm({ title: "", description: "", due_date: "", priority: "MEDIUM", assigned_to: "" });
+      setForm({ title: "", description: "", due_date: "", priority: "medium", assigned_to: null });
       await fetchTasks(selectedProject);
     } catch (err) {
       setError(err.response?.data?.detail || "Failed to create task");
@@ -160,15 +160,15 @@ export default function Tasks() {
                   value={form.priority}
                   onChange={(e) => setForm({ ...form, priority: e.target.value })}
                 >
-                  <option value="LOW">Low</option>
-                  <option value="MEDIUM">Medium</option>
-                  <option value="HIGH">High</option>
+                  <option value="low">Low</option>
+                  <option value="medium">Medium</option>
+                  <option value="high">High</option>
                 </select>
               </div>
               <select
                 className="input"
-                value={form.assigned_to}
-                onChange={(e) => setForm({ ...form, assigned_to: e.target.value })}
+                value={form.assigned_to || ""}
+                onChange={(e) => setForm({ ...form, assigned_to: e.target.value ? parseInt(e.target.value) : null })}
               >
                 <option value="">Assign to user</option>
                 {users.map((user) => (
