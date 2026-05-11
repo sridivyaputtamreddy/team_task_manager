@@ -1,31 +1,45 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from database import Base, engine
-from routers import auth_routes, project_routes, task_routes, dashboard_routes
 
+from database import Base, engine
+
+from routers import (
+    auth_routes,
+    project_routes,
+    task_routes,
+    dashboard_routes
+)
+
+# Create DB tables
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
+# Allowed Frontend Origins
 origins = [
     "http://localhost:5173",
     "https://team-task-manager-3v3w.vercel.app"
 ]
 
+# CORS Middleware
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
-    allow_headers=["*"],  # important
-    expose_headers=["*"], # 🔥 ADD THIS (fixes Railway OPTIONS issues)
+    allow_headers=["*"],
+    expose_headers=["*"],
 )
 
+# Routes
 app.include_router(auth_routes.router)
 app.include_router(project_routes.router)
 app.include_router(task_routes.router)
 app.include_router(dashboard_routes.router)
 
+# Health Check
 @app.get("/")
 def home():
-    return {"message": "Task Manager API Running"}
+    return {
+        "message": "Task Manager API Running"
+    }
