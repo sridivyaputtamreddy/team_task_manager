@@ -198,9 +198,9 @@ export default function Tasks() {
                     </div>
                     <div style={{ display: 'flex', gap: '8px', alignItems: 'center', flexWrap: 'wrap' }}>
                       <span style={{ fontWeight: 'bold' }}>{task.status}</span>
-                      <button className="btn" onClick={() => updateStatus(task.id, 'TODO')}>TODO</button>
-                      <button className="btn" onClick={() => updateStatus(task.id, 'IN_PROGRESS')}>In Progress</button>
-                      <button className="btn" onClick={() => updateStatus(task.id, 'DONE')}>Done</button>
+                      <button className="btn" onClick={() => updateStatus(task.id, 'pending')}>Pending</button>
+                      <button className="btn" onClick={() => updateStatus(task.id, 'in_progress')}>In Progress</button>
+                      <button className="btn" onClick={() => updateStatus(task.id, 'completed')}>Completed</button>
                     </div>
                   </div>
                 </div>
