@@ -20,6 +20,16 @@ export default function Signup() {
       return;
     }
 
+    if (form.name.length < 2 || form.name.length > 50) {
+      setError("Name must be between 2 and 50 characters");
+      return;
+    }
+
+    if (form.password.length < 6 || form.password.length > 128) {
+      setError("Password must be between 6 and 128 characters");
+      return;
+    }
+
     try {
       await API.post("/signup", form);
       navigate("/");
